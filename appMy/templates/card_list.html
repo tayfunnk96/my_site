@@ -1,0 +1,85 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+<main>
+  <section class=""></section>
+
+  <div class="row">
+    <div class="col-9 bg-dark px-4">
+      <section class="content2">
+        <div class="d-flex justify-content-between border-2 border-bottom my-3">
+          <h2 class="text-light">Haftanın En Popüler Postları</h2>
+          <div class="d-flex g-3">
+            {% if cate != "all" %}
+
+            <a
+              href="/Kartlar-12/{{ cate}}"
+              class="btn btn-secondary m-1 px-3 py-2"
+              >1</a
+            >
+            <a
+              href="/Kartlar-6/{{ cate}}"
+              class="btn btn-secondary m-1 px-3 py-2"
+              >2</a
+            >
+            <a
+              href="/Kartlar-4/{{ cate}}"
+              class="btn btn-secondary m-1 px-3 py-2"
+              >3</a
+            >
+            {% else %}
+
+            <a
+              href="{% url 'card_listPage2' '12' %}"
+              class="btn btn-secondary m-1 px-3 py-2"
+              >1</a
+            >
+            <a
+              href="{% url 'card_listPage2' '6' %}"
+              class="btn btn-secondary m-1 px-3 py-2"
+              >2</a
+            >
+            <a
+              href="{% url 'card_listPage2' '4' %}"
+              class="btn btn-secondary m-1 px-3 py-2"
+              >3</a
+            >
+
+            {% endif %}
+          </div>
+        </div>
+        <div class="row">
+          {% for i in posts %}
+          <div class="col-{{ grid }} p-2">
+            <div class="card mb-3 post h-100">
+              <a href="/Haber/{{ i.id }}">
+                <img
+                  src="{{ i.image.url }}"
+                  class="card-img-top"
+                  alt="Wild Landscape"
+                />
+              </a>
+              <div class="card-body d-flex flex-column justify-content-between">
+                <div>
+                  <h5 class="card-title">{{ i.title }}</h5>
+                  <h5 class="card-title text-secondary fs-6 mb-3">
+                    {{ i.subtitle }}
+                  </h5>
+                  <p class="card-text">{{ i.text|truncatechars:"100" }}</p>
+                </div>
+
+                <p class="card-text">
+                  <small class="text-muted">{{ i.date_now }}</small>
+                </p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+
+    <!-- Category -->
+
+    {% include 'partials/_sidenav.html' %}
+  </div>
+</main>
+{% endblock body %}

@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block head %}
+<style>
+  .comment-send{
+    box-shadow: 0px 0px 0px 6px #000 inset;
+  }
+    
+</style>
+{% endblock head %}
+  
+
+
+
+  {% block body %}
+<main>
+    
+  <div class="row">
+       <div class="col-9 bg-dark p-4">
+          
+                
+                <section class="content2">
+                  <div class="card mb-3 post h-100">
+                    <a href="/Haber/{{ i.id }}">
+                      <img src="{{ post.image.url }}" class="card-img-top" alt="Wild Landscape"/>
+                    </a> 
+                    <div class="card-body d-flex flex-column justify-content-between">
+                      <div>
+                        <h5 class="card-title">{{ post.title }}</h5>
+                      <h5 class="card-title text-secondary fs-6 mb-3">{{ post.subtitle }}</h5>
+                      <p class="card-text">
+                        {{ post.text |linebreaks}}
+                      </p>
+                      </div>
+                      
+                      <p class="card-text d-flex justify-content-between pe-4 pt-3">
+                        <small class="text-secondary">{{ post.date_now }}</small>
+                        <small class="text-secondary">{{ post.author }}</small>
+                      </p>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="content3">
+                  <h2 class="text-secondary">Yorumlar</h2>
+                  <div class="card mb-3 post h-100">
+                    
+                      
+                    {% for i in comments %}
+
+                    <div class="card-body d-flex flex-column justify-content-between">
+                      <div>
+                        <h5 class="card-title">{{ i.full_name }}</h5>
+                      <p class="card-text">
+                        {{ i.text}}
+                      </p>
+                      </div>
+                      
+                      <p class="card-text d-flex justify-content-between pe-4 pt-3">
+                        <small class="text-secondary">{{ i.date_now }}</small>
+                      </p>
+                    </div>
+
+                    {% endfor %}
+
+
+                    
+                    <div class="card-body d-flex flex-column justify-content-between">
+                      <div>
+                        <h5 class="card-title">{{ post.title }}</h5>
+                      <p class="card-text">
+                        {{ post.text |linebreaks}}
+                      </p>
+                      </div>
+                      
+                      <p class="card-text d-flex justify-content-between pe-4 pt-3">
+                        <small class="text-secondary">{{ post.date_now }}</small>
+                      </p>
+                    </div>
+                    <hr>
+                  </div>
+
+                  <h2 class="text-secondary">Yorum Yap</h2>
+                  <div class="card mb-3 post h-100 comment-send">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                      <ol>
+                        <li>form attribute olarak method ='POST' olmalı</li>
+                        <li>form içinde "csrf_token" olmalı</li>
+                        <li>inputlarda name olacak</li>
+                        <li>button da submit olmalı</li>
+                      </ol>
+                      <form method="POST">
+                        {% csrf_token %}
+                        <div>
+                          <label class="form-label">Ad-Soyad:</label>
+                        <input name="fullname" type="text" class="form-control">
+                        </div>
+                        <div>
+                          <label class="form-label">Yorumunuz:</label>
+                        <textarea name="comment" class="form-control" cols="30" rows="10"></textarea>
+                        </div>
+                        <button class="btn-btn-prmiary my-3">Paylaş</button>
+                      </form>
+                    </div>
+                  </div>       
+                </section>
+       </div>
+       <!-- Category -->
+       
+       {% include 'partials/_sidenav.html' %}
+
+  </div>
+  
+    
+  </div>
+      
+
+</main>
+{% endblock body %}
+
+
+  
+
+

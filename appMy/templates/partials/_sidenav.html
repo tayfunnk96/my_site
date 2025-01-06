@@ -1,0 +1,35 @@
+{% load static %}
+
+<div class="col-3 bg-dark sidenav">
+    <ul class="list-group list-group-light bg-dark">
+      <div class="text-bg-primary p-3 fs-4 border-bottom border-danger border-4">Kategori</div>
+      <!--KATEGORİ-->
+      {% for i in categorys %}
+    
+      <li style="background-color: #555;"
+       class=" text-light list-group-item list-group-item-secondary p-3 rounded-0 d-flex justify-content-between align-items-center">
+        <div>
+          <!-- <a href="/Kartlar/{{ i.title }}" class="fw-bold">{{ i.title }}</a> -->
+          <a href="{% url 'card_listPage3' i.title %}" class="fw-bold text-light text-capitalize">{{ i.title }}</a>
+        </div>
+        <span class="badge rounded-pill badge-success">Active</span>
+      </li>
+    
+      {% endfor %}
+      <!--ÖNERİ-->
+
+      <div class="text-bg-primary p-3 fs-4 border-bottom border-danger border-4">Öneriler</div>
+      {% for i in posts %}
+    
+      <li style="background-color: #555;"
+       class=" text-light list-group-item p-0 rounded-0 d-flex justify-content-between align-items-center">
+       <img src="{{ i.image.url }}" alt="" style="width: 100px; object-fit: cover;" class="h-100">
+        <div class="d-flex flex-column ps-2"> 
+          <a href="{% url 'card_listPage3' i.title %}" class="fw-bold text-light text-capitalize">{{ i.title }}</a>
+          <a href="{% url 'card_listPage3' i.title %}" class="text-secondary text-capitalize">{{ i.text | truncatechars:"60" }}</a>
+        </div>
+        <span class="badge rounded-pill badge-success">Active</span>
+      </li>
+      {% endfor %}
+    </ul>
+ </div>

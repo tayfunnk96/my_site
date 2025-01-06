@@ -1,0 +1,75 @@
+{% load static %}
+
+ <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-dark px-3">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Navbar brand -->
+      <a class="navbar-brand me-2 pe-5" href="https://mdbgo.com/">
+        <img
+          src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp"
+          height="16"
+          alt="MDB Logo"
+          loading="lazy"
+          style="margin-top: -1px;"
+        />
+      </a>
+  
+      <!-- Toggle button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#navbarButtonsExample"
+        aria-controls="navbarButtonsExample"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarButtonsExample">
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Anasayfa</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'card_listPage1' %}">Kartlar</a>
+          </li>
+        </ul>
+        <!-- Left links -->
+
+        <!--<div class="text-primary">{{ request.user.email }}</div>-->
+
+
+        <div class="d-flex align-items-center">
+          {% if request.user.is_authenticated %}
+            <div class="btn-group">
+              <button type="button" class="user btn btn-primary dropdown-toggle p-0 rounded-circle" data-mdb-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-user-large"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a href="{% url 'indexPage' %}" class="dropdown-item" type="button">Ana Sayfa</a></li>
+                <li><button class="dropdown-item" type="button">Another action</button></li>
+                <li><a href="{% url 'logoutUser' %}" class="dropdown-item" type="button">Çıkış Yap</a></li>
+              </ul>
+            </div>
+          {% else %}
+            <a href="{% url 'loginPage' %}" class="btn btn-link px-3 me-2">
+              Giriş
+            </a>
+            <a type= "{% url 'registerPage' %}" class="btn btn-primary me-3">
+              Kaydol
+            </a>
+          {% endif %}
+          
+          
+        </div>
+      </div>
+      <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->

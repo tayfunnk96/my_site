@@ -1,0 +1,43 @@
+.row{
+    width: 100%;
+}
+.row>*{
+    padding: 0;
+}
+.user{
+  width: 38px;
+  height: 38px;
+}
+.user::after{
+  content: none !important;
+}
+.sidenav{
+    box-shadow: -2px 0px 4px 0px;
+}
+.navbar{
+    padding: 1rem 0;
+    background-color: #222;
+}
+.post img{
+    height: 250px;
+    object-fit: cover;
+}
+.carousel-section .img{
+  height: 400px;
+}
+.content1 .card-body{
+  background-color: #444;
+}
+.content2 .card-body{
+  background-color: #555;
+  color: white !important;
+}
+.content3 .card-body{
+  background-color: #ccc;
+}
+.footer{
+  background-color: #555; 
+}
+.footer a{
+  color: #ddd; 
+}
